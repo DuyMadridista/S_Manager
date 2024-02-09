@@ -83,14 +83,26 @@ const userId = route.params.id;
 const config = useRuntimeConfig();
 const URL_BE = config.public.API_BASE_BE;
 
-const dataRole = ref([]);
-
+// const dataRole = ref([]);
+// const props = defineProps({
+//     editData: {
+//         type: Object,
+//         default: null
+//     },
+//     isEdit: {
+//         type: Boolean,
+//         default: false
+//     }
+// });
+// const editData = props.editData
+// const isEdit = props.isEdit
 
 
 const postData = ref({
     id_post: "",
     title: "",
     content: "",
+    img: ""
 });
 
 const errorValue = ref({
@@ -118,23 +130,23 @@ const validate = () => {
     return isValue;
 }
 
-const getRole = () => {
-    axios
-        .get(`${URL_BE}/api/v1/author/get_all_role`)
-        .then((res) => {
-            return dataRole.value = res.data
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-}
+// const getRole = () => {
+//     axios
+//         .get(`${URL_BE}/api/v1/author/get_all_role`)
+//         .then((res) => {
+//             return dataRole.value = res.data
+//         })
+//         .catch((error) => {
+//             console.log(error);
+//         })
+// }
 
 
 
-onMounted(async () => {
-    displayIMG("imageInput", "imageDisplay");
-    getRole();
-});
+// onMounted(async () => {
+//     displayIMG("imageInput", "imageDisplay");
+//     getRole();
+// });
 
 
 const saveUser = () => {
@@ -181,5 +193,18 @@ const saveUser = () => {
 const Cancel = () => {
     router.push('/home');
 }
-
+onMounted(() => {
+    const isEdit = route.query.isEdit;
+    const editData = JSON.parse(route.query.editData);
+    console.log(isEdit);
+    console.log(editData);
+    if (isEdit && editData) {
+        postData.value.id_post = editData.id_post;
+        postData.value.title = editData.title;
+        postData.value.content = editData.content;
+        postData.value.img = editData.img;
+        console.log("data");
+        console.log(postData.value);
+    }
+})
 </script>

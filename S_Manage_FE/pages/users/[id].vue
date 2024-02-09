@@ -235,10 +235,8 @@ const Cancel = () => {
   <div class="px-20 py-10">
     <div class="flex items-center w-20 cursor-pointer">
       <font-awesome-icon :icon="['fas', 'chevron-left']" />
-      <button
-        class="btn-SignUp hover:opacity-90 w-10 text-[04364A] font-bold border-b-2 border-[04364A] text-left ml-1"
-        @click="Cancel()"
-      >
+      <button class="btn-SignUp hover:opacity-90 w-10 text-[04364A] font-bold border-b-2 border-[04364A] text-left ml-1"
+        @click="Cancel()">
         Back
       </button>
     </div>
@@ -251,132 +249,90 @@ const Cancel = () => {
               <label for="" class="text-base font-semibold text-black">Họ và tên:</label>
               <input
                 class="w-full px-3 py-2 pr-12 mt-2 text-base border-2 rounded focus:outline-none placeholder:text-slate-500"
-                name="name"
-                v-model="DataUser.name"
-                type="text"
-                placeholder="name"
-                @blur="validate()"
-                :class="{ 'is-invalid': errorValue.name }"
-              />
+                name="name" v-model="DataUser.name" type="text" placeholder="name" @blur="validate()"
+                :class="{ 'is-invalid': errorValue.name }" />
 
               <div class="text-left invalid-feedback" v-if="errorValue.name">
                 {{ errorValue.name }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
 
             <div class="relative w-3/4 p-2 mb-4 input">
               <label for="" class="text-base font-semibold text-black">Tuổi:</label>
               <input
                 class="w-full px-3 py-2 pr-12 mt-2 text-base border-2 rounded focus:outline-none placeholder:text-slate-500"
-                name="age"
-                v-model="DataUser.age"
-                type="text"
-                placeholder="age"
-                @blur="validate()"
-                :class="{ 'is-invalid': errorValue.age }"
-              />
+                name="age" v-model="DataUser.age" type="text" placeholder="age" @blur="validate()"
+                :class="{ 'is-invalid': errorValue.age }" />
 
               <div class="text-left invalid-feedback" v-if="errorValue.age">
                 {{ errorValue.age }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
 
             <div class="relative w-3/4 p-2 mb-4 input">
               <label for="" class="text-base font-semibold text-black">Số điện thoại:</label>
               <input
                 class="w-full px-3 py-2 pr-12 mt-2 text-base border-2 rounded focus:outline-none placeholder:text-slate-500"
-                name="phone"
-                v-model="DataUser.phone"
-                type="text"
-                placeholder="phone"
-                @blur="validate()"
-                :class="{ 'is-invalid': errorValue.phone }"
-              />
+                name="phone" v-model="DataUser.phone" type="text" placeholder="phone" @blur="validate()"
+                :class="{ 'is-invalid': errorValue.phone }" />
 
               <div class="text-left invalid-feedback" v-if="errorValue.phone">
                 {{ errorValue.phone }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
 
             <div class="relative w-3/4 p-2 mb-4 input">
               <label for="" class="text-base font-semibold text-black">Địa chỉ:</label>
               <input
                 class="w-full px-3 py-2 pr-12 mt-2 text-base border-2 rounded focus:outline-none placeholder:text-slate-500"
-                name="address"
-                v-model="DataUser.address"
-                type="text"
-                placeholder="address"
-                @blur="validate()"
-                :class="{ 'is-invalid': errorValue.address }"
-              />
+                name="address" v-model="DataUser.address" type="text" placeholder="address" @blur="validate()"
+                :class="{ 'is-invalid': errorValue.address }" />
 
               <div class="text-left invalid-feedback" v-if="errorValue.address">
                 {{ errorValue.address }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
 
             <div class="relative w-3/4 p-2 mb-4 input">
               <label for="" class="text-base font-semibold text-black">User Name:</label>
               <input
                 class="w-full px-3 py-2 pr-12 mt-2 text-base border-2 rounded focus:outline-none placeholder:text-slate-500"
-                name="username"
-                v-model="DataUser.username"
-                type="text"
-                placeholder="username"
-                @blur="validate()"
-                :class="{ 'is-invalid': errorValue.username }"
-              />
+                name="username" v-model="DataUser.username" type="text" placeholder="username" @blur="validate()"
+                :class="{ 'is-invalid': errorValue.username }" />
 
               <div class="text-left invalid-feedback" v-if="errorValue.username">
                 {{ errorValue.username }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
 
             <div class="relative w-3/4 p-2 mb-4 input">
               <label for="" class="text-base font-semibold text-black">Emai:</label>
               <input
                 class="w-full px-3 py-2 pr-12 mt-2 text-base border-2 rounded focus:outline-none placeholder:text-slate-500"
-                name="email"
-                v-model="DataUser.email"
-                type="text"
-                placeholder="email"
-                @blur="validate()"
-                :class="{ 'is-invalid': errorValue.email }"
-              />
+                name="email" v-model="DataUser.email" type="text" placeholder="email" @blur="validate()"
+                :class="{ 'is-invalid': errorValue.email }" />
 
               <div class="text-left invalid-feedback" v-if="errorValue.email">
                 {{ errorValue.email }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
 
             <div class="relative w-3/4 p-2 mb-4 input" v-if="role_id === 1">
@@ -393,12 +349,8 @@ const Cancel = () => {
 
               <div>
                 <select name="role" id="role" v-model="DataUser.idRole">
-                  <option
-                    v-for="role in dataRole.roles"
-                    :key="role.id_role"
-                    :value="role.id_role"
-                    :selected="role.id_role === DataUser.idRole"
-                  >
+                  <option v-for="role in dataRole.roles" :key="role.id_role" :value="role.id_role"
+                    :selected="role.id_role === DataUser.idRole">
                     {{ role.name_role }}
                   </option>
                 </select>
@@ -408,52 +360,37 @@ const Cancel = () => {
                 {{ errorValue.role }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
 
             <div class="relative w-3/4 p-2 mb-4 input">
               <label for="" class="text-base font-semibold text-black">Trạng thái:</label>
               <input
                 class="w-full px-3 py-2 pr-12 mt-2 text-base border-2 rounded focus:outline-none placeholder:text-slate-500"
-                name="status"
-                v-model="DataUser.status"
-                type="text"
-                placeholder="status"
-                @blur="validate()"
-                :class="{ 'is-invalid': errorValue.status }"
-              />
+                name="status" v-model="DataUser.status" type="text" placeholder="status" @blur="validate()"
+                :class="{ 'is-invalid': errorValue.status }" />
 
               <div class="text-left invalid-feedback" v-if="errorValue.status">
                 {{ errorValue.status }}
               </div>
 
-              <font-awesome-icon
-                class="absolute text-xl cursor-pointer right-6 bottom-5"
-                :icon="['fas', 'pen-to-square']"
-              />
+              <font-awesome-icon class="absolute text-xl cursor-pointer right-6 bottom-5"
+                :icon="['fas', 'pen-to-square']" />
             </div>
           </div>
 
           <div class="flex flex-col items-center justify-start w-2/5">
             <div>
-              <img
-                id="imageDisplay"
-                :src="DataUser.avatar"
-                alt="avt"
-                class="w-[500px] h-[600px] rounded-3xl shadow-xl object-cover"
-              />
+              <img id="imageDisplay" :src="DataUser.avatar" alt="avt"
+                class="w-[500px] h-[600px] rounded-3xl shadow-xl object-cover" />
 
               <input type="file" id="imageInput" name="avatar" />
             </div>
 
             <div class="flex justify-center w-3/4 mt-6">
-              <button
-                type="submit"
-                class="btn-SignIn hover:opacity-90 bg-[04364A] text-black font-bold py-2 px-10 rounded mr-8"
-              >
+              <button type="submit"
+                class="btn-SignIn hover:opacity-90 bg-[04364A] text-black font-bold py-2 px-10 rounded mr-8">
                 Cập nhật thông tin
               </button>
             </div>

@@ -5,8 +5,9 @@
   import axios from 'axios';
   import { useRoute, useRouter } from 'vue-router';
   import { notify } from '@kyvg/vue3-notification';
-
   import displayIMG from '../../../middleware/displayIMG';
+  
+
 
   definePageMeta({
         layout: 'admin'

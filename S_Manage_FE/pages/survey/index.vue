@@ -3,11 +3,11 @@
 import axios from "axios";
 
 import { notify } from '@kyvg/vue3-notification';
-
-import UserCard from "~/components/UserCard.vue";
 import SearchItem from "~/components/SearchItem.vue";
-
-const emits = defineEmits(['clickShowPopup', 'clickCloseAllPopup', 'clickOnDelete', 'clickEditUser', 'update:searchKeyword']);
+import voteResult from "~/components/voteResult.vue";
+import createVote from "./createVote.vue";
+import voteCard from "~/components/voteCard.vue";
+const emits = defineEmits(['edit', 'delete', 'add']);
 
 const config = useRuntimeConfig();
 const API_BE = config.public.API_BASE_BE;
@@ -19,8 +19,10 @@ const router = useRouter();
 definePageMeta({
     layout: 'custom'
 });
+
+
 const closeAllPopup = () => {
-    console.log("closeAllPopup");
+    //console.log("closeAllPopup");
     var popups = document.querySelectorAll('.boxAction');
     let overlay = document.querySelector(".overlay");
     overlay.style.display = "none";
@@ -33,6 +35,7 @@ const autoClosePopup = (e) => {
     console.log("autoClosePopup");
 };
 const showPopup = (id) => {
+    console.log(id + " clicked!");
     closeAllPopup();
     var popup = document.querySelector("#action-" + id);
     let overlay = document.querySelector(".overlay");
@@ -69,56 +72,68 @@ const onDelete = (id) => {
             });
         });
 };
-
-
-const fetchData = async () => {
-    try {
-        const response = await axios.get(`${API_BE}/api/v1/users`);
-        return userData.value = response.data;
-    }
-    catch (error) {
-        return [];
-    }
-};
-
-const filteredUsers = computed(() => {
-    if (!searchKeyword.value) {
-        return userData.value;
-    }
-    const keyword = searchKeyword.value.toLowerCase();
-    return userData.value.filter((user) => {
-        if (user) {
-            const name = (user.name || '').toString(); // Convert to string
-            const email = (user.email || '').toString(); // Convert to string
-            const age = (user.age || '').toString(); // Convert to string
-            const gender = (user.gender || '').toString(); // Convert to string
-            const role = (user.role || '').toString(); // Convert to string
-
-            return (
-                name.toLowerCase().includes(keyword) ||
-                email.toLowerCase().includes(keyword) ||
-                age.toLowerCase().includes(keyword) ||
-                gender.toLowerCase().includes(keyword) ||
-                role.toLowerCase().includes(keyword)
-            );
-        }
-
-        return false;
-    });
-});
-
-onMounted(() => {
-    // isLogin();
-    fetchData();
-});
-
-const editUser = (id) => {
+const viewResult = (id => {
     closeAllPopup();
-    router.push(`/users/${id}`);
+    router.push(`/survey/viewResult/${id}`);
+})
+
+
+const surveys = [{
+    id: 1,
+    title: "Best Framework",
+    description: " alaa",
+    options: [
+        { name: "Vue", votes: 5 },
+        { name: "React", votes: 2 },
+        { name: "Angular", votes: 70 },
+    ],
+},
+{
+    id: 2,
+    title: "Best Language",
+    description: " alaa",
+    options: [
+        { name: "JavaScript", votes: 0 },
+        { name: "Python", votes: 0 },
+        { name: "Java", votes: 0 },
+    ],
+},
+{
+    id: 3,
+    title: "Best Database",
+    description: " alaa",
+    options: [
+        { name: "MongoDB", votes: 0 },
+        { name: "MySQL", votes: 0 },
+        { name: "PostgreSQL", votes: 0 },
+    ],
+},
+];
+const showModal = ref(false);
+
+const addSurvey = () => {
+    showModal.value = true;
 };
-const addUser = () => {
-    //   console.log(authStore.isAuth);
-    router.push('/users/createUser');
+
+var editSurvey = null;
+var isEdit = false;
+
+const onEdit = (id) => {
+    const survey = surveys.find(s => s.id === id);
+
+    editSurvey = {
+        ...survey
+    };
+    isEdit = true;
+    showModal.value = true;
+    // console.log("bên này nè");
+    // console.log(editSurvey);
+    // console.log("bên này nè");
+}
+
+const closeSurvey = () => {
+    showModal.value = false;
+    isEdit = false;
 };
 </script>
 <template>
@@ -130,14 +145,22 @@ const addUser = () => {
                 </div>
                 <button type="button"
                     class="flex justify-end px-4 py-2 text-sm font-medium text-white bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                    @click="addUser()">
+                    @click="addSurvey()">
                     Thêm Mới
                 </button>
             </div>
             <div class="container-body">
-                <div v-for="user in filteredUsers" :key="user.idUser">
-                    <UserCard :DataUser="user" @clickShowPopup="showPopup" @clickCloseAllPopup="closeAllPopup"
-                        @clickOnDelete="onDelete" @clickEditUser="editUser" />
+                <div v-for="(survey, index) in surveys" :key="index">
+                    <!-- <voteResult :voteFor="survey.voteFor" :options="survey.options.map(option => option.name)"
+                        :result="survey.options.map(option => option.votes)" @edit="handleEdit" @delete="handleDelete"
+                        @add="handleAdd" /> -->
+                    <voteCard :dataSurvey="survey" @clickShowPopup="showPopup" @clickCloseAllPopup="closeAllPopup"
+                        @clickOnDelete="onDelete" @clickEdit="onEdit" @clickViewResult="viewResult" />
+                </div>
+            </div>
+            <div class="absolute inset-0 z-50 flex items-center justify-center bg-slate-800 bg-opacity-50" v-if="showModal">
+                <div class="bg-white p-8 rounded-md">
+                    <createVote @close="closeSurvey" :isEdit="isEdit" :dataSurvey="editSurvey" />
                 </div>
             </div>
         </div>
